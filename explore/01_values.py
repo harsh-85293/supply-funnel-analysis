@@ -1,0 +1,67 @@
+"""Categorical value counts, date ranges, cross-file consistency. Exploration only."""
+import pandas as pd
+pd.set_option('display.width', 220); pd.set_option('display.max_columns', 60)
+pd.set_option('display.max_rows', 200)
+
+cap = pd.read_csv('../captains.csv', parse_dates=['signup_ts'])
+doc = pd.read_csv('../doc_events.csv', parse_dates=['event_ts'])
+apr = pd.read_csv('../approvals.csv', parse_dates=['decision_ts'])
+act = pd.read_csv('../activation.csv', parse_dates=['first_order_ts'])
+nud = pd.read_csv('../nudges.csv', parse_dates=['sent_ts'])
+
+print('### captains categoricals')
+for c in ['city', 'vehicle_type', 'acquisition_channel', 'device_tier', 'app_language', 'age_band']:
+    print(f'\n-- {c}')
+    print(cap[c].value_counts(dropna=False))
+
+print('\n### signup_ts range', cap.signup_ts.min(), '->', cap.signup_ts.max())
+print(cap.signup_ts.dt.to_period('M').value_counts().sort_index())
+
+print('\n### doc_events')
+print(doc.doc_type.value_counts(dropna=False))
+print(doc.event_type.value_counts(dropna=False))
+print(doc.attempt_no.value_counts(dropna=False).sort_index())
+print('failure_reason:'); print(doc.failure_reason.value_counts(dropna=False))
+print('event_ts range', doc.event_ts.min(), '->', doc.event_ts.max())
+print('\nfailure_reason present on non-fail events?')
+print(doc.groupby('event_type').failure_reason.apply(lambda s: s.notna().sum()))
+
+print('\n### approvals')
+print(apr.final_status.value_counts(dropna=False))
+print(apr.last_stage_reached.value_counts(dropna=False))
+print(apr.docs_cleared.value_counts(dropna=False).sort_index())
+print('decision_ts range', apr.decision_ts.min(), '->', apr.decision_ts.max())
+print('\nfinal_status x docs_cleared')
+print(pd.crosstab(apr.final_status, apr.docs_cleared))
+print('\nfinal_status x last_stage_reached')
+print(pd.crosstab(apr.final_status, apr.last_stage_reached.fillna('<NA>')))
+print('\nfinal_status x decision_ts null')
+print(pd.crosstab(apr.final_status, apr.decision_ts.isna()))
+
+print('\n### cross-file integrity')
+print('captains ids unique:', cap.captain_id.is_unique)
+print('doc ids not in captains:', (~doc.captain_id.isin(cap.captain_id)).sum())
+print('apr ids not in captains:', (~apr.captain_id.isin(cap.captain_id)).sum())
+print('act ids not in captains:', (~act.captain_id.isin(cap.captain_id)).sum())
+print('nud ids not in captains:', (~nud.captain_id.isin(cap.captain_id)).sum())
+appr_ids = set(apr.loc[apr.final_status == 'approved', 'captain_id'])
+print('n approved in approvals:', len(appr_ids))
+print('n rows in activation:', len(act))
+print('activation ids NOT approved:', (~act.captain_id.isin(appr_ids)).sum())
+print('approved with no activation row:', len(appr_ids - set(act.captain_id)))
+print('captains with no doc events:', (~cap.captain_id.isin(doc.captain_id)).sum())
+
+print('\n### nudges')
+print(nud.campaign_id.value_counts())
+print(pd.crosstab(nud.campaign_id, nud.channel))
+print(nud.groupby('campaign_id')[['delivered', 'clicked']].mean())
+print('clicked=1 but delivered=0:', ((nud.clicked == 1) & (nud.delivered == 0)).sum())
+print('sent_ts range', nud.sent_ts.min(), '->', nud.sent_ts.max())
+print('nudges per captain:'); print(nud.groupby('captain_id').size().value_counts().sort_index())
+
+print('\n### activation')
+print(act.describe(include='all'))
+print('\nnull pattern combos:')
+print(act.assign(fo=act.first_order_ts.isna(), d7=act.orders_d7.isna(),
+                 d30=act.orders_d30.isna(), oh=act.online_hours_d30.isna())
+      .groupby(['fo', 'd7', 'd30', 'oh']).size())

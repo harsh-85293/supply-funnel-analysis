@@ -8,5 +8,8 @@ matplotlib==3.11.1
 # deliverables (build_pdfs.py) -- also supplies the DejaVu font with the rupee glyph
 reportlab==5.0.1
 
+# deliverables (build_pptx.py) -- native PowerPoint of the deck
+python-pptx==1.0.2
+
 # verification (verify_claims.py) -- reads back the rendered PDF text
 pypdfium2==5.13.0

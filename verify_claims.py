@@ -347,6 +347,20 @@ if memo_pdf.exists() and deck_pdf.exists():
     check("deck is at most 6 slides", _pdf_pages(deck_pdf) <= 6, True, 0)
     check("deck is exactly 6 slides", _pdf_pages(deck_pdf), 6, 0)
 
+    # native PowerPoint deck: same six slides
+    deck_pptx = DELIV / "DECK.pptx"
+    if deck_pptx.exists():
+        try:
+            import zipfile
+            with zipfile.ZipFile(deck_pptx) as z:
+                n_pptx = len([x for x in z.namelist()
+                              if re.fullmatch(r"ppt/slides/slide\d+\.xml", x)])
+            check("PowerPoint deck is exactly 6 slides", n_pptx, 6, 0)
+        except Exception as e:
+            print(f"  [skip] could not read DECK.pptx: {e}")
+    else:
+        print("  [skip] DECK.pptx not built - run `python build_pptx.py`")
+
     # "No code, no unexplained jargon" -- checked on what a reader actually sees
     try:
         import pypdfium2 as pdfium

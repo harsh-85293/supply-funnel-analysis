@@ -6,7 +6,7 @@
 |---|---|---|---|
 | A memo, max 2 pages | **`deliverables/MEMO.pdf`** (source: `MEMO.md`) | 2 pages | 2 pages |
 | Your working, runs end to end from the raw CSVs | **`run_all.py`** + `src/` + this README | — | ~90 seconds |
-| A deck, max 6 slides | **`deliverables/DECK.pdf`** (source: `DECK.md`) | 6 slides | 6 slides |
+| A deck, max 6 slides | **`deliverables/DECK.pdf`** and **`DECK.pptx`** (source: `DECK.md`) | 6 slides | 6 slides |
 
 `deliverables/SPEAKER_NOTES.md` holds the 10-minute timing plan, the three
 interruptions I've prepared for, and the questions I expect in the 20-minute Q&A.
@@ -36,6 +36,7 @@ pip install -r requirements.txt
 
 python run_all.py               # analysis + chart exhibits  -> outputs/
 python build_pdfs.py            # MEMO.pdf and DECK.pdf
+python build_pptx.py            # DECK.pptx (native PowerPoint of the deck)
 python verify_claims.py         # checks the deliverables against the analysis
 ```
 

@@ -58,16 +58,16 @@ The three affected documents are full-page paper covered in small print. The thr
 
 ![](outputs/charts/campaign_ladder.png)
 
-**The message only goes out once a captain has already cleared two documents. None of the 7,981 recipients got it earlier** — and getting through the Licence and Registration Certificate is where 44% of all our loss happens.
+**It only goes out once a captain has cleared two documents — none of the 7,981 recipients got it earlier**, and clearing the Licence and Registration Certificate is where 44% of our loss happens.
 
-| Two checks a real message effect has to pass | Approved | |
+| Two checks a real message effect must pass | Approved | |
 |---|---|---|
-| Message delivered | 31.5% | ← no difference |
+| Message delivered | 31.5% | ← no difference vs... |
 | Message **failed to send** | 31.8% | |
-| Tapped the message | 30.8% | ← no dose-response |
+| Tapped the message | 30.8% | ← no dose-response vs... |
 | Ignored it | 32.0% | |
 
-**On 5x:** it already reaches 55% of everyone eligible, so full coverage is less than double. Extend it to the remaining ~1,200 eligible captains a month — WhatsApp costs almost nothing — but **hold 20% back as a comparison group.** Six months of running it, and we still cannot say what it does.
+**On 5x: it already reaches 55% of everyone eligible — full coverage is <2x, not 5x.** Extend it (WhatsApp is nearly free), but hold 20% back as a control.
 
 ---
 
@@ -86,7 +86,7 @@ The three affected documents are full-page paper covered in small print. The thr
 | City centre | 42% | 53% | 8.6% | ₹263 |
 | **Suburb (23 km out)** | **41%** | **17%** | **21.0%** | **₹176** |
 
-About a quarter of the airport demand we record as unmet is a captain who accepted, then cancelled. **Acquisition buys headcount; it cannot buy hours** — and the airport data carries no captain identity, so the home-zone premise cannot be tested at all.
+**Acquisition buys headcount; it cannot buy hours** — and ~a quarter of "unmet" airport demand is a captain who accepted, then cancelled.
 
 ---
 

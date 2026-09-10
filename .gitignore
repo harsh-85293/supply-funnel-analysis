@@ -11,8 +11,9 @@ __pycache__/
 # generated analysis output -- rebuild with `python run_all.py`
 outputs/
 
-# Note: deliverables/MEMO.pdf and deliverables/DECK.pdf ARE committed, so a
-# reviewer can open them without running the pipeline. Rebuild via build_pdfs.py.
+# Note: the built deliverables in deliverables/ (MEMO.pdf, DECK.pdf, DECK.pptx)
+# ARE committed, so a reviewer can open them without running the pipeline.
+# Rebuild via build_pdfs.py and build_pptx.py.
 
 # os cruft
 .DS_Store

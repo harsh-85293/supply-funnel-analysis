@@ -8,10 +8,6 @@
 | Your working, runs end to end from the raw CSVs | **`run_all.py`** + `src/` + this README | — | ~90 seconds |
 | A deck, max 6 slides | **`deliverables/DECK.pdf`** and **`DECK.pptx`** (source: `DECK.md`) | 6 slides | 6 slides |
 
-`deliverables/SPEAKER_NOTES.md` holds the 10-minute timing plan, the three
-interruptions I've prepared for, and the questions I expect in the 20-minute Q&A.
-It is deliberately outside the deck so the deck stays at six slides.
-
 ## Repository layout
 
 ```

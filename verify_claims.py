@@ -368,8 +368,7 @@ if memo_pdf.exists() and deck_pdf.exists():
                      "final_status", "captain_id", "paid_digital", "fos_field",
                      "organic_app", "gc_telecalling", "first_order_ts",
                      "logit", "p-value", "p =", "bootstrap", "coefficient",
-                     "confidence interval", "immortal", "marginal effect",
-                     "SPEAKER_NOTES"]
+                     "confidence interval", "immortal", "marginal effect"]
         for name, path in [("memo", memo_pdf), ("deck", deck_pdf)]:
             doc = pdfium.PdfDocument(str(path))
             txt = "\n".join(doc[i].get_textpage().get_text_range()

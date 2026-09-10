@@ -15,6 +15,9 @@ outputs/
 # ARE committed, so a reviewer can open them without running the pipeline.
 # Rebuild via build_pdfs.py and build_pptx.py.
 
+# personal debrief prep -- not one of the three deliverables
+deliverables/SPEAKER_NOTES.md
+
 # os cruft
 .DS_Store
 Thumbs.db

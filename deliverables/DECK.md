@@ -1,6 +1,6 @@
 # Captain onboarding & airport supply
 
-*Six slides. 10 minutes. Speaker notes and prepared answers to likely interruptions are in `SPEAKER_NOTES.md`.*
+*Six slides for a 10-minute presentation, assuming two interruptions.*
 
 ---
 
